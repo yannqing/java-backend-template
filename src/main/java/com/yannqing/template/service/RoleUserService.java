@@ -13,6 +13,8 @@ public interface RoleUserService extends IService<RoleUser> {
 
     void addRole(String username, RoleType roleType);
 
+    void addRole(String username, Integer roleId);
+
     void addRole(int userId, Integer roleId);
 
     void addRole(int userId, RoleType roleType);

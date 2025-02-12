@@ -53,6 +53,21 @@ public class RoleUserServiceImpl extends ServiceImpl<RoleUserMapper, RoleUser>
         this.baseMapper.insert(roleUser);
     }
 
+    @Override
+    public void addRole(String username, Integer roleId) {
+        User addRoleUser = userMapper.selectOne(new QueryWrapper<User>().eq("username", username));
+        Optional.ofNullable(addRoleUser)
+                .orElseThrow(() -> new BusinessException(ErrorType.ROLE_ADD_ERROR));
+
+        roleService.verifyRole(roleId, ErrorType.ROLE_ADD_ERROR);
+
+        RoleUser roleUser = new RoleUser();
+        roleUser.setUid(addRoleUser.getUserId());
+        roleUser.setRid(roleId);
+
+        this.baseMapper.insert(roleUser);
+    }
+
     /**
      * 根据用户 id 与 角色 id 给用户添加角色
      * @param userId

@@ -76,7 +76,7 @@ public class AuthServiceImpl implements AuthService {
         if (registerDto.getRoleId() == null) {
             roleUserService.addRole(username, RoleType.USER);
         } else {
-            roleUserService.addRole(username, RoleType.USER.getRoleId() == registerDto.getRoleId() ? RoleType.USER : RoleType.OTHER);
+            roleUserService.addRole(username, registerDto.getRoleId());
         }
 
         log.info("用户{}添加角色{}成功", registerUser.getUsername(), RoleType.USER.getRoleId() == registerDto.getRoleId() ? RoleType.USER.getRoleCode() : RoleType.OTHER.getRoleCode());
