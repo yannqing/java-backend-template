@@ -15,7 +15,7 @@ spring:
   data:
     # redis
     redis:
-      host: mackRedis
+      host: redis
       port: 6379
       password: wyjh030208..
       database: 0
